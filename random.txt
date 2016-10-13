@@ -1,0 +1,4 @@
+module.exports = {
+command: 'spotify-this-song',
+input: "I Want it That Way"
+}
