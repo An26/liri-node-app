@@ -5,6 +5,7 @@ var Twitter = require('twitter');
 var twitter = new Twitter(keys);
 var spotify = require('spotify');
 var request = require('request');
+var fs = require('fs');
 
 //userface to request a specific choice/catagory
 function beginLiri() {
@@ -16,7 +17,7 @@ function beginLiri() {
 		name: 'mainMenu'
 		
 	}).then(function compareChoice(choice){
-		console.log("user choice is: " + choice.mainMenu);
+		//console.log("user choice is: " + choice.mainMenu);
 		var command = choice.mainMenu;
 		//returns [object, object] --- how to look into this? 10/9/2016
 
@@ -32,8 +33,21 @@ function beginLiri() {
 			return console.log('no choices');
 		}
 
-		logOutputs();
+		var log = choice.mainMenu;
+
+		// fs.appendFile('log.txt', logs, function(error) {
+		// if(error){
+		// 	return console.log("not logged in log.txt");
+		// }
+		// //console.log('that stuff was added, hurray!!');
+		// });
+
+		logCommands(log);
 	});
+
+
+
+
 }
 
 beginLiri();
@@ -62,7 +76,7 @@ function showTweets() {
 
 //function spotify-this-song
 //should default to "The Sign" by Ace of Base??
-function spotifyInfo() {
+function spotifyInfo(songTitle) {
 	inquirer.prompt({
 		name: 'songTitle',
 		message: "La, la, laaaaaaa! What song do you wanna know about?"
@@ -93,7 +107,7 @@ function movieInfo() {
 		//adding default error if person spams
 		if(movie.movieName === '')
 		{
-			console.log('show default movie');
+			//console.log('show default movie');
 			movie.movieName = "Mr. Nobody";
 		} 
 
@@ -103,15 +117,7 @@ function movieInfo() {
 			if (error && response.statusCode == 200){
 				return console.log('sorry...cannot load this information');
 			} else {
-				console.log("Title: " + JSON.parse(body).Title);
-				console.log("Release Year: " + JSON.parse(body).Year);
-				console.log("IMBD Rating: " + JSON.parse(body).imdbRating);
-				console.log("Rotten Tomato Rating: " + JSON.parse(body).tomatoRating);
-				console.log("Country Origin: " + JSON.parse(body).Country);
-				console.log("Original Language: " + JSON.parse(body).Language);
-				console.log("Actor List: " + JSON.parse(body).Actors);
-				console.log("Plot: " + JSON.parse(body).Plot);
-				console.log("Rotten Tomato URL: " + JSON.parse(body).tomatoURL);
+				console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nIMBD Rating: " + JSON.parse(body).imdbRating + "\nRotten Tomato Rating: " + JSON.parse(body).tomatoRating + "/nCountry Origin: " + JSON.parse(body).Country + "\nOriginal Language: " + JSON.parse(body).Language + "\nActor List: " + JSON.parse(body).Actors + "\nPlot: " + JSON.parse(body).Plot + "\nRotten Tomato URL: " + JSON.parse(body).tomatoURL);
 			}
 		});
 	});
@@ -121,16 +127,23 @@ function movieInfo() {
 
 //function do-what-it-says
 //do-what-it-says - using fs - takes text from random.txt and run it in the liri bot
+//hot to get command and input to go through the prompts i have in my current program! ahhh.... 
 function doThis() {
 	console.log("command: " + Random.command);
+	console.log("input: " + Random.input);
+
 	if(Random.command === 'my-tweets'){
 			showTweets();
-		} else if (command === 'spotify-this-song'){
-			spotifyInfo(Random.input);
-		} else if (command === 'movie-this'){
+		} else if (Random.command === 'spotify-this-song'){
+			console.log("shiiiit");
+			song.songTitle = Random.input;
+
+			spotifyInfo(song.songTitle);
+			
+		} else if (Random.command === 'movie-this'){
 			movieInfo(Random.input);
-		} else if (command === 'do-what-it-says'){
-			doThis();
+		} else if (Random.command === 'do-what-it-says'){
+			doThis(Random.input);
 		} else {
 			return console.log('no choices');
 		}
@@ -139,8 +152,15 @@ function doThis() {
 
 //bonus***
 //logs outputs to a log.txt file, append them! 
-function logOutputs() {
-	//console.log("logOutputs is begininggg");
-	//logs outputs to log.txt automatically
+function logCommands(log) {
+
+	//var log = '';
+
+	fs.appendFile(log.txt, log, function(error) {
+	if(error){
+		return console.log("nopeeee, sorry");
+	}
+	console.log('that stuff was added, hurray!!');
+})
 }
 
