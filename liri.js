@@ -8,7 +8,6 @@ var request = require('request');
 var fs = require('fs');
 
 //userface to request a specific choice/catagory
-function beginLiri() {
 	inquirer.prompt(
 	{
 		type: "list",
@@ -33,24 +32,10 @@ function beginLiri() {
 			return console.log('no choices');
 		}
 
-		var log = choice.mainMenu;
-
-		// fs.appendFile('log.txt', logs, function(error) {
-		// if(error){
-		// 	return console.log("not logged in log.txt");
-		// }
-		// //console.log('that stuff was added, hurray!!');
-		// });
-
-		logCommands(log);
+		//logs the choice in logs.txt
+		logText("\n-----------------------------");
+		logText("Choice: " + command);
 	});
-
-
-
-
-}
-
-beginLiri();
 
 
 //function my-tweets
@@ -68,7 +53,9 @@ function showTweets() {
 				var tweetOutput = "My Tweet: " + tweetInfo.text + "\n" +
 					"Published On: " + tweetInfo.created_at + "\n";
 				console.log(tweetOutput);
-				// logText(tweetOutput);
+
+				//logs tweet output
+				logText("Output: \n" + tweetOutput);
 			})
 	  	}
 	});
@@ -89,9 +76,11 @@ function spotifyInfo(songTitle) {
 		        console.log('Error occurred: ' + err);
 		        return;
 		    }
-		    console.log("Artist: " + data.tracks.items[0].artists[0].name);
-		    console.log("Song Name: " + data.tracks.items[0].name);
-		    console.log("Song Sample: " + data.tracks.items[0].preview_url);
+		    var spotifyOutput = "Artist: " + data.tracks.items[0].artists[0].name + "\nSong Name: " + data.tracks.items[0].name + "\nSong Sample: " + data.tracks.items[0].preview_url
+		    console.log(spotifyOutput);
+
+		    //logs to log.txt
+		    logText("Output: \n" + spotifyOutput);
 		});
 	})
 }
@@ -117,7 +106,9 @@ function movieInfo() {
 			if (error && response.statusCode == 200){
 				return console.log('sorry...cannot load this information');
 			} else {
-				console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nIMBD Rating: " + JSON.parse(body).imdbRating + "\nRotten Tomato Rating: " + JSON.parse(body).tomatoRating + "/nCountry Origin: " + JSON.parse(body).Country + "\nOriginal Language: " + JSON.parse(body).Language + "\nActor List: " + JSON.parse(body).Actors + "\nPlot: " + JSON.parse(body).Plot + "\nRotten Tomato URL: " + JSON.parse(body).tomatoURL);
+				var movieOutput = "Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nIMBD Rating: " + JSON.parse(body).imdbRating + "\nRotten Tomato Rating: " + JSON.parse(body).tomatoRating + "/nCountry Origin: " + JSON.parse(body).Country + "\nOriginal Language: " + JSON.parse(body).Language + "\nActor List: " + JSON.parse(body).Actors + "\nPlot: " + JSON.parse(body).Plot + "\nRotten Tomato URL: " + JSON.parse(body).tomatoURL
+				console.log(movieOutput);
+				logText("Output: \n" + movieOutput);
 			}
 		});
 	});
@@ -125,7 +116,7 @@ function movieInfo() {
 
 
 
-//function do-what-it-says
+//function do-what-it-says?!?!?!? bahhh :'(
 //do-what-it-says - using fs - takes text from random.txt and run it in the liri bot
 //hot to get command and input to go through the prompts i have in my current program! ahhh.... 
 function doThis() {
@@ -149,18 +140,12 @@ function doThis() {
 		}
 }
 
-
-//bonus***
-//logs outputs to a log.txt file, append them! 
-function logCommands(log) {
-
-	//var log = '';
-
-	fs.appendFile(log.txt, log, function(error) {
+//logs output function 
+function logText(log) {
+	fs.appendFile('log.txt', "\n" + log, function(error) {
 	if(error){
-		return console.log("nopeeee, sorry");
+		return console.log("nothing logged, sorry");
 	}
-	console.log('that stuff was added, hurray!!');
-})
+	});
 }
 
