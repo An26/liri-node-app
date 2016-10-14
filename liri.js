@@ -1,4 +1,4 @@
-var keys = require('./keys.js');
+var keys = require('./keys2.js');
 var Random = require('./random.txt');
 var inquirer = require('inquirer');
 var Twitter = require('twitter');
