@@ -32,3 +32,52 @@ Output:
 Artist: The Beatles
 Song Name: Yellow Submarine - Remastered 2015
 Song Sample: https://p.scdn.co/mp3-preview/436756271e402f2d29b8290e9777b39bd4e25f3a
+
+-----------------------------
+Choice: spotify-this-song
+Output: 
+Artist: TLC
+Song Name: No Scrubs
+Song Sample: https://p.scdn.co/mp3-preview/69daa711bddd8fe7aa9acf17106ca85cf1ccfa14?cid=null
+
+-----------------------------
+Choice: my-tweets
+Output: 
+My Tweet: so... @joshmadewell for Survivor! @survivorcbs @jeffprobst #madeforsurvivor
+Published On: Sat Feb 11 18:05:59 +0000 2017
+
+Output: 
+My Tweet: CHIRPY CHIRPY
+Published On: Thu Oct 13 06:07:11 +0000 2016
+
+Output: 
+My Tweet: this is my third tweet!
+Published On: Thu Oct 13 06:06:57 +0000 2016
+
+Output: 
+My Tweet: Tweet Tweettt = 1st tweet everrrr
+Published On: Mon Oct 10 23:23:30 +0000 2016
+
+Output: 
+My Tweet: 2nd post - this is it?
+Published On: Wed Oct 12 18:57:05 +0000 2016
+
+Choice: movie-this
+
+-----------------------------
+Output: 
+Title: John Wick
+Release Year: 2014
+IMBD Rating: 7.2
+Rotten Tomato Rating: N/A/nCountry Origin: USA
+Original Language: English, Russian, Hungarian
+Actor List: Keanu Reeves, Michael Nyqvist, Alfie Allen, Willem Dafoe
+Plot: An ex-hitman comes out of retirement to track down the gangsters that took everything from him.
+Rotten Tomato URL: http://www.rottentomatoes.com/m/john_wick/
+
+-----------------------------
+Choice: do-what-it-says
+Output: 
+Artist: Backstreet Boys
+Song Name: I Want It That Way
+Song Sample: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=null

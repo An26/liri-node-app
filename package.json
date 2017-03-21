@@ -4,8 +4,13 @@
   "description": "hw 10",
   "main": "liri.js",
   "scripts": {
+    "start": "node liri.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+    "keywords": [
+    "example",
+    "heroku"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/An26/liri-node-app.git"
@@ -21,5 +26,8 @@
     "request": "^2.75.0",
     "spotify": "^0.3.0",
     "twitter": "^1.4.0"
+  },
+  "engines": {
+    "node": "4.6.0"
   }
 }
